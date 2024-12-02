@@ -67,7 +67,7 @@ var card_type: CardType
 var tech_buff: TechBuff
 var special_buff: SpecialBuff
 var unforeseen_type: UnforeseenType
-var planet_name: String
+var card_name: String
 var planet_energy: int
 var planet_biomatter: int
 var planet_exotic_materials: int

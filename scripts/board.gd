@@ -2,21 +2,17 @@ extends Node
 ## This class sets up the board for success
 
 @export var total_cards: int
-@export var max_planets: int
-@export var max_tech: int
-@export var max_unforeseens: int
-@export var max_special: int
 
 var rng = RandomNumberGenerator.new()
 var card_scene: PackedScene
 var planets: Array
-var planets_used: Array
+var planets_on_board: Array
 var techs: Array
-var techs_used: Array
+var techs_on_board: Array
 var unforeseens: Array
-var unforeseens_used: Array
+var unforeseens_on_board: Array
 var specials: Array
-var specials_used: Array
+var specials_dealt: Array
 
 func _ready() -> void:
 	card_scene = load("res://scenes/card.tscn")
@@ -68,17 +64,24 @@ func _ready() -> void:
 				["Landlord", card.SpecialBuff.PLUS_FOR_MOST_M],
 				["Energy Monopoly", card.SpecialBuff.PLUS_FOR_MOST_ENERGY],
 				["Mass Attractor", card.SpecialBuff.PLUS_FOR_M]]
-	for i in range(max_tech):
+	_build_board()
+func _process(delta) -> void:
+	pass
+	
+
+func _build_board():
+	for i in range(techs.size()):
 		var tech: Node2D = card_scene.instantiate()
 		_card_factory(tech, "Tech")
 		add_child(tech)
-	for i in range(max_planets):
+	for i in range(planets.size()):
 		var planet: Node2D = card_scene.instantiate()
 		_card_factory(planet, "Planet")
 		add_child(planet)
-	
-func _process(delta) -> void:
-	pass
+	for i in range(unforeseens.size()):
+		var uf: Node2D = card_scene.instantiate()
+		_card_factory(uf, "Unforeseen")
+		add_child(uf)
 
 func _card_factory(inputObj: card, type: String):
 	match(type):
@@ -86,11 +89,11 @@ func _card_factory(inputObj: card, type: String):
 			inputObj.card_type = card.CardType.PLANET
 			var random_pick = rng.randi_range(0, planets.size() - 1)
 			var planet_picked = planets[random_pick]
-			while planet_picked in planets_used:
+			while planet_picked in planets_on_board:
 				random_pick = rng.randi_range(0, planets.size() - 1)
 				planet_picked = planets[random_pick]
-			planets_used.append(planet_picked)
-			inputObj.planet_name = planet_picked[0]
+			planets_on_board.append(planet_picked)
+			inputObj.card_name = planet_picked[0]
 			inputObj.planet_energy = planet_picked[1]
 			inputObj.planet_biomatter = planet_picked[2]
 			inputObj.planet_exotic_materials = planet_picked[3]
@@ -98,10 +101,21 @@ func _card_factory(inputObj: card, type: String):
 			inputObj.card_type = card.CardType.TECHNOLOGY
 			var random_pick = rng.randi_range(0, techs.size() - 1)
 			var tech_picked = techs[random_pick]
-			while tech_picked in techs_used:
+			while tech_picked in techs_on_board:
 				random_pick = rng.randi_range(0, techs.size() - 1)
 				tech_picked = techs[random_pick]
-			techs_used.append(tech_picked)
+			techs_on_board.append(tech_picked)
+			inputObj.card_name = tech_picked[0]
 			inputObj.tech_buff = tech_picked[1]
+		"Unforeseen":
+			inputObj.card_type = card.CardType.UNFORESEEN
+			var random_pick = rng.randi_range(0, unforeseens.size() - 1)
+			var uf_picked = unforeseens[random_pick]
+			while uf_picked in unforeseens_on_board:
+				random_pick = rng.randi_range(0, unforeseens.size() - 1)
+				uf_picked = unforeseens[random_pick]
+			unforeseens_on_board.append(uf_picked)
+			inputObj.card_name = uf_picked[0]
+			inputObj.unforeseen_type = uf_picked[1]
 	
 	
