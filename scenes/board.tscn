@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://blgvrw44bbfxq"]
+
+[ext_resource type="Script" path="res://scripts/board.gd" id="1_kmpuk"]
+
+[node name="Dealer" type="Node"]
+script = ExtResource("1_kmpuk")
+total_cards = 38
+max_planets = 10
+max_tech = 1

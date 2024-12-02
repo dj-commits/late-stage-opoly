@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://wfyq8mcv7vhe"]
+
+[ext_resource type="Script" path="res://scenes/player.gd" id="1_evl2e"]
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_evl2e")
+max_specials = 2
+starting_energy = 3
+starting_matter = 2
+starting_exotic = 1

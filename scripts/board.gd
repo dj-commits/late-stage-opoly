@@ -1,5 +1,5 @@
 extends Node
-## This class will deal cards
+## This class sets up the board for success
 
 @export var total_cards: int
 @export var max_planets: int
@@ -36,7 +36,30 @@ func _ready() -> void:
 			 ["Passive Energy", card.TechBuff.GAIN_3E],
 			 ["Von Nooman Probe", card.TechBuff.BANK_PAYS_EXPLORE],
 			 ["Private Explorers", card.TechBuff.E_FOR_UF]]
-	unforeseens = []
+	unforeseens = [["Ananke", card.UnforeseenType.PLUS_ONE_E],
+					["Asteria", card.UnforeseenType.NO_M],
+					["Achlys", card.UnforeseenType.DRAW_NEW_SYSTEM],
+					["Hebe", card.UnforeseenType.MINUS_TWO_E],
+					["Iris", card.UnforeseenType.E_IS_X_AND_MINUS_TWO_X],
+					["Hecate", card.UnforeseenType.NOTHING_HERE],
+					["Tyche", card.UnforeseenType.DRAW_TWO_NEW_UF],
+					["Eileithyia", card.UnforeseenType.MINUS_ONE_M],
+					["Nemesis", card.UnforeseenType.MINUS_ONE_X],
+					["Phobos", card.UnforeseenType.NO_E],
+					["Deimos", card.UnforeseenType.PLUS_THREE_E_AND_MINUS_ONE_X],
+					["Erebus", card.UnforeseenType.X_IS_M],
+					["Nyx", card.UnforeseenType.MINUS_THREE_E_AND_PLUS_ONE_X],
+					["Thanatos", card.UnforeseenType.NO_X],
+					["Hypnos", card.UnforeseenType.PLUS_ONE_M],
+					["Oneiroi", card.UnforeseenType.PLUS_TWO_M],
+					["Moros", card.UnforeseenType.M_IS_E],
+					["Keres", card.UnforeseenType.MINUS_TWO_M],
+					["Eirene", card.UnforeseenType.PLUS_TWO_E],
+					["Harmonia", card.UnforeseenType.PLUS_ONE_X],
+					["Melinoe", card.UnforeseenType.MINUS_ONE_E],
+					["Terminus", card.UnforeseenType.NOTHING_HERE],
+					["Ascelpius", card.UnforeseenType.NO_M],
+					["Janus", card.UnforeseenType.NO_E]]
 	specials = [["Starlord", card.SpecialBuff.PLUS_FOR_E],
 				["Technotopia", card.SpecialBuff.PLUS_FOR_TECH],
 				["Exophile", card.SpecialBuff.PLUS_FOR_MOST_EXO],
