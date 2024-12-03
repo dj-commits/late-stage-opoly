@@ -71,7 +71,8 @@ var card_name: String
 var planet_energy: int
 var planet_biomatter: int
 var planet_exotic_materials: int
-
+var face_down: bool
+var back_of_card: Sprite2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -88,4 +89,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if(back_of_card && back_of_card.visible == false):
+		back_of_card.visible = true
+
+func _physics_process(delta):
 	pass

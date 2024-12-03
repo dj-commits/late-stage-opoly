@@ -65,6 +65,7 @@ func _ready() -> void:
 				["Energy Monopoly", card.SpecialBuff.PLUS_FOR_MOST_ENERGY],
 				["Mass Attractor", card.SpecialBuff.PLUS_FOR_M]]
 	_build_board()
+	
 func _process(delta) -> void:
 	pass
 	
@@ -74,16 +75,20 @@ func _build_board():
 		var tech: Node2D = card_scene.instantiate()
 		_card_factory(tech, "Tech")
 		add_child(tech)
+		tech.global_position = $TechDeckMarker.global_position + Vector2(0, techs_on_board.size() + (i * 10))
 	for i in range(planets.size()):
 		var planet: Node2D = card_scene.instantiate()
 		_card_factory(planet, "Planet")
 		add_child(planet)
+		planet.global_position = $PlanetDeckMarker.global_position + Vector2(0, planets_on_board.size() + (i * 10))
 	for i in range(unforeseens.size()):
 		var uf: Node2D = card_scene.instantiate()
 		_card_factory(uf, "Unforeseen")
 		add_child(uf)
+		uf.global_position = $UnforeseenDeckMarker.global_position + Vector2(0, unforeseens_on_board.size() + (i * 10))
 
 func _card_factory(inputObj: card, type: String):
+	inputObj.face_down = true
 	match(type):
 		"Planet":                                                                                                                                                               
 			inputObj.card_type = card.CardType.PLANET
@@ -93,6 +98,7 @@ func _card_factory(inputObj: card, type: String):
 				random_pick = rng.randi_range(0, planets.size() - 1)
 				planet_picked = planets[random_pick]
 			planets_on_board.append(planet_picked)
+			inputObj.back_of_card = inputObj.get_node("CardPlanet")
 			inputObj.card_name = planet_picked[0]
 			inputObj.planet_energy = planet_picked[1]
 			inputObj.planet_biomatter = planet_picked[2]
@@ -105,6 +111,7 @@ func _card_factory(inputObj: card, type: String):
 				random_pick = rng.randi_range(0, techs.size() - 1)
 				tech_picked = techs[random_pick]
 			techs_on_board.append(tech_picked)
+			inputObj.back_of_card = inputObj.get_node("CardTech")
 			inputObj.card_name = tech_picked[0]
 			inputObj.tech_buff = tech_picked[1]
 		"Unforeseen":
@@ -115,6 +122,7 @@ func _card_factory(inputObj: card, type: String):
 				random_pick = rng.randi_range(0, unforeseens.size() - 1)
 				uf_picked = unforeseens[random_pick]
 			unforeseens_on_board.append(uf_picked)
+			inputObj.back_of_card = inputObj.get_node("CardUf")
 			inputObj.card_name = uf_picked[0]
 			inputObj.unforeseen_type = uf_picked[1]
 	
