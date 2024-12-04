@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://blgvrw44bbfxq"]
+
+[ext_resource type="Script" path="res://scripts/board.gd" id="1_kmpuk"]
+
+[node name="Board" type="Node"]
+script = ExtResource("1_kmpuk")
+total_cards = 38
+
+[node name="PlanetDeckMarker" type="Marker2D" parent="."]
+
+[node name="TechDeckMarker" type="Marker2D" parent="."]
+position = Vector2(330, 0)
+
+[node name="UnforeseenDeckMarker" type="Marker2D" parent="."]
+position = Vector2(-330, 0)
+
+[node name="Camera2D" type="Camera2D" parent="."]

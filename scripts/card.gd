@@ -37,14 +37,42 @@ enum SpecialBuff
 	PLUS_FOR_M
 }
 
+enum UnforeseenType
+{
+	PLUS_ONE_E,
+	NO_M,
+	DRAW_NEW_SYSTEM,
+	MINUS_TWO_E,
+	E_IS_X_AND_MINUS_TWO_X,
+	NOTHING_HERE,
+	DRAW_TWO_NEW_UF,
+	MINUS_ONE_M,
+	MINUS_ONE_X,
+	NO_E,
+	PLUS_THREE_E_AND_MINUS_ONE_X,
+	X_IS_M,
+	MINUS_THREE_E_AND_PLUS_ONE_X,
+	NO_X,
+	PLUS_ONE_M,
+	PLUS_TWO_M,
+	M_IS_E,
+	MINUS_TWO_M,
+	PLUS_TWO_E,
+	PLUS_ONE_X,
+	MINUS_ONE_E
+	
+}
+
 var card_type: CardType
 var tech_buff: TechBuff
 var special_buff: SpecialBuff
-var planet_name: String
+var unforeseen_type: UnforeseenType
+var card_name: String
 var planet_energy: int
 var planet_biomatter: int
 var planet_exotic_materials: int
-
+var face_down: bool
+var back_of_card: Sprite2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -61,4 +89,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if(back_of_card && back_of_card.visible == false):
+		back_of_card.visible = true
+
+func _physics_process(delta):
 	pass
