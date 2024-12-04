@@ -89,7 +89,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if(back_of_card && back_of_card.visible == false):
+	if(back_of_card && back_of_card.visible == false && face_down):
 		back_of_card.visible = true
 
 func _physics_process(delta):

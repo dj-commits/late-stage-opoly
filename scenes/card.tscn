@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://cjp5ro0wph26w"]
 
 [ext_resource type="Script" path="res://scripts/card.gd" id="1_foxae"]
-[ext_resource type="Texture2D" uid="uid://b2aqhaw5ihqoa" path="res://card_planet.png" id="2_qnar1"]
-[ext_resource type="Texture2D" uid="uid://cf8drmk52pqv3" path="res://card_special.png" id="3_xsypb"]
-[ext_resource type="Texture2D" uid="uid://kr1hh62frt6x" path="res://card_tech.png" id="4_ltipm"]
-[ext_resource type="Texture2D" uid="uid://b2mxn4r6cchmp" path="res://card_uf.png" id="5_c6w2e"]
+[ext_resource type="Texture2D" uid="uid://b2aqhaw5ihqoa" path="res://sprites/card_planet.png" id="2_qnar1"]
+[ext_resource type="Texture2D" uid="uid://cf8drmk52pqv3" path="res://sprites/card_special.png" id="3_xsypb"]
+[ext_resource type="Texture2D" uid="uid://kr1hh62frt6x" path="res://sprites/card_tech.png" id="4_ltipm"]
+[ext_resource type="Texture2D" uid="uid://b2mxn4r6cchmp" path="res://sprites/card_uf.png" id="5_c6w2e"]
 
 [node name="Card" type="Node2D"]
 script = ExtResource("1_foxae")
