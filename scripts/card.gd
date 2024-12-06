@@ -73,6 +73,7 @@ var planet_biomatter: int
 var planet_exotic_materials: int
 var face_down: bool
 var back_of_card: Sprite2D
+var top_card: bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -91,6 +92,20 @@ func _ready():
 func _process(delta):
 	if(back_of_card && back_of_card.visible == false && face_down):
 		back_of_card.visible = true
+	
+
 
 func _physics_process(delta):
 	pass
+
+
+func _on_area_2d_mouse_entered() -> void:
+	print_debug("Mouse entered card space")
+	if(top_card):
+		material.set_shader_parameter("is_on", true)
+
+
+func _on_area_2d_mouse_exited() -> void:
+	print_debug("Mouse exited card space")
+	if top_card:
+		material.set_shader_parameter("is_on", false)
