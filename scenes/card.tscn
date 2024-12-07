@@ -1,26 +1,72 @@
-[gd_scene load_steps=6 format=3 uid="uid://cjp5ro0wph26w"]
+[gd_scene load_steps=9 format=3 uid="uid://cjp5ro0wph26w"]
 
 [ext_resource type="Script" path="res://scripts/card.gd" id="1_foxae"]
-[ext_resource type="Texture2D" uid="uid://b2aqhaw5ihqoa" path="res://card_planet.png" id="2_qnar1"]
-[ext_resource type="Texture2D" uid="uid://cf8drmk52pqv3" path="res://card_special.png" id="3_xsypb"]
-[ext_resource type="Texture2D" uid="uid://kr1hh62frt6x" path="res://card_tech.png" id="4_ltipm"]
-[ext_resource type="Texture2D" uid="uid://b2mxn4r6cchmp" path="res://card_uf.png" id="5_c6w2e"]
+[ext_resource type="Shader" path="res://shaders/card_highlight.gdshader" id="1_wvxov"]
+[ext_resource type="Texture2D" uid="uid://b2aqhaw5ihqoa" path="res://sprites/card_planet.png" id="2_qnar1"]
+[ext_resource type="Texture2D" uid="uid://cf8drmk52pqv3" path="res://sprites/card_special.png" id="3_xsypb"]
+[ext_resource type="Texture2D" uid="uid://kr1hh62frt6x" path="res://sprites/card_tech.png" id="4_ltipm"]
+[ext_resource type="Texture2D" uid="uid://b2mxn4r6cchmp" path="res://sprites/card_uf.png" id="5_c6w2e"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pnqv0"]
+resource_local_to_scene = true
+shader = ExtResource("1_wvxov")
+shader_parameter/color = Color(0, 0.122833, 0.67, 1)
+shader_parameter/width = 5.0
+shader_parameter/pattern = 2
+shader_parameter/is_on = false
+shader_parameter/inside = false
+shader_parameter/add_margins = true
+shader_parameter/number_of_images = Vector2(1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f5o56"]
+size = Vector2(225, 319)
 
 [node name="Card" type="Node2D"]
+material = SubResource("ShaderMaterial_pnqv0")
 script = ExtResource("1_foxae")
 
 [node name="CardPlanet" type="Sprite2D" parent="."]
-visible = false
+use_parent_material = true
 texture = ExtResource("2_qnar1")
+
+[node name="Area2D" type="Area2D" parent="CardPlanet"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CardPlanet/Area2D"]
+position = Vector2(-1.5, 0.5)
+shape = SubResource("RectangleShape2D_f5o56")
 
 [node name="CardSpecial" type="Sprite2D" parent="."]
 visible = false
+use_parent_material = true
 texture = ExtResource("3_xsypb")
+
+[node name="Area2D" type="Area2D" parent="CardSpecial"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CardSpecial/Area2D"]
+position = Vector2(-1.5, 0.5)
+shape = SubResource("RectangleShape2D_f5o56")
 
 [node name="CardTech" type="Sprite2D" parent="."]
 visible = false
+use_parent_material = true
 texture = ExtResource("4_ltipm")
+
+[node name="Area2D" type="Area2D" parent="CardTech"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CardTech/Area2D"]
+position = Vector2(-1.5, 0.5)
+shape = SubResource("RectangleShape2D_f5o56")
 
 [node name="CardUf" type="Sprite2D" parent="."]
 visible = false
+use_parent_material = true
 texture = ExtResource("5_c6w2e")
+
+[node name="Area2D" type="Area2D" parent="CardUf"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CardUf/Area2D"]
+position = Vector2(-1.5, 0.5)
+shape = SubResource("RectangleShape2D_f5o56")
+
+[connection signal="mouse_entered" from="CardPlanet/Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="CardPlanet/Area2D" to="." method="_on_area_2d_mouse_exited"]

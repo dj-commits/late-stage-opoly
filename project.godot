@@ -14,3 +14,8 @@ config/name="late-stage-opoly"
 run/main_scene="res://scenes/board.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=800
+window/size/viewport_height=600

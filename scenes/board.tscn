@@ -7,11 +7,12 @@ script = ExtResource("1_kmpuk")
 total_cards = 38
 
 [node name="PlanetDeckMarker" type="Marker2D" parent="."]
+position = Vector2(0, -150)
 
 [node name="TechDeckMarker" type="Marker2D" parent="."]
-position = Vector2(330, 0)
+position = Vector2(330, -150)
 
 [node name="UnforeseenDeckMarker" type="Marker2D" parent="."]
-position = Vector2(-330, 0)
+position = Vector2(-330, -150)
 
 [node name="Camera2D" type="Camera2D" parent="."]

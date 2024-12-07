@@ -70,6 +70,10 @@ func _process(delta) -> void:
 	pass
 	
 
+func _calc_top_of_stack():
+	pass
+	
+
 func _build_board():
 	for i in range(techs.size()):
 		var tech: Node2D = card_scene.instantiate()
@@ -81,6 +85,8 @@ func _build_board():
 		_card_factory(planet, "Planet")
 		add_child(planet)
 		planet.global_position = $PlanetDeckMarker.global_position + Vector2(0, planets_on_board.size() + (i * 10))
+		if(i == planets.size() - 1):
+			planet.top_card = true
 	for i in range(unforeseens.size()):
 		var uf: Node2D = card_scene.instantiate()
 		_card_factory(uf, "Unforeseen")
